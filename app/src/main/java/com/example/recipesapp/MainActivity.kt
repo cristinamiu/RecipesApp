@@ -5,9 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -68,6 +66,19 @@ fun App() {
 
             Greeting(name = "Chef",
                 style = MaterialTheme.typography.bodyLarge)
+
+        Card(colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primaryContainer)) {
+            Greeting(name = "Card", style = MaterialTheme.typography.displaySmall)
+        }
+            Card(colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondaryContainer)) {
+                Greeting(name = "Card", style = MaterialTheme.typography.displaySmall)
+            }
+            Card(colors = CardDefaults.cardColors(MaterialTheme.colorScheme.tertiaryContainer)) {
+                Greeting(name = "Card", style = MaterialTheme.typography.displaySmall)
+            }
+            Card(colors = CardDefaults.cardColors(MaterialTheme.colorScheme.surfaceVariant)) {
+                Greeting(name = "Card", style = MaterialTheme.typography.displaySmall)
+            }
         }
 
 
