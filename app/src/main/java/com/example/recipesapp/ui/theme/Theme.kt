@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 
 
 private val LightColors = lightColorScheme(
@@ -83,9 +84,11 @@ fun RecipesAppTheme(
         DarkColors
     }
 
-    MaterialTheme(
-        colorScheme = colors,
-        typography = Typography,
-        content = content,
-    )
+    CompositionLocalProvider(LocalSpacing provides Spacing()) {
+        MaterialTheme(
+            colorScheme = colors,
+            typography = Typography,
+            content = content,
+        )
+    }
 }
