@@ -1,16 +1,21 @@
 package com.example.recipesapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.recipesapp.ui.theme.RecipesAppTheme
 import com.example.recipesapp.ui.theme.spacing
 
@@ -53,12 +58,50 @@ fun DarkTheme() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun App() {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-
+        Scaffold(
+            topBar = {
+                     RecipesAppBar()
+                     }
+            ,
+            content = {},
+        )
     }
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun RecipesAppBar() {
+    CenterAlignedTopAppBar(title = {
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "wesgrd",
+            modifier = Modifier.size(MaterialTheme.spacing.extraLarge)
+        )
+    },
+        colors = topAppBarColors(
+        containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    )
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
