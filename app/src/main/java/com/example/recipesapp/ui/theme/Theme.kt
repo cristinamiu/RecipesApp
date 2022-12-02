@@ -85,6 +85,7 @@ fun RecipesAppTheme(
 
     MaterialTheme(
         colorScheme = colors,
-        content = content
+        typography = Typography,
+        content = content,
     )
 }
