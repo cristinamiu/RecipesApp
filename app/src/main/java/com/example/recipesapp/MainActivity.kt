@@ -38,6 +38,24 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     RecipesAppTheme {
+        App()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DarkTheme() {
+    RecipesAppTheme(useDarkTheme = true) {
+        App()
+    }
+}
+
+@Composable
+fun App() {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
         Greeting("Android")
     }
 }
