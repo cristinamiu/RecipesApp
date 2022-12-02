@@ -83,7 +83,7 @@ fun RecipesAppBar() {
         Image(
             painter = painterResource(id = R.drawable.logo),
             contentDescription = "wesgrd",
-            modifier = Modifier.size(MaterialTheme.spacing.extraLarge)
+            modifier = Modifier.size(MaterialTheme.spacing.logoSize)
         )
     },
         colors = topAppBarColors(
