@@ -59,33 +59,6 @@ fun App() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        Column() {
-            Greeting(name = "Chef",
-                style = MaterialTheme.typography.displayLarge)
-
-            Greeting(name = "Chef",
-                style = MaterialTheme.typography.displayMedium)
-
-            Greeting(name = "Chef",
-                style = MaterialTheme.typography.bodyLarge)
-
-        Card(colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primaryContainer)) {
-            Greeting(name = "Card", style = MaterialTheme.typography.displaySmall)
-        }
-            Card(colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondaryContainer)) {
-                Greeting(name = "Card", style = MaterialTheme.typography.displaySmall)
-            }
-            Card(colors = CardDefaults.cardColors(MaterialTheme.colorScheme.tertiaryContainer)) {
-                Greeting(name = "Card", style = MaterialTheme.typography.displaySmall)
-            }
-            Card(modifier = Modifier.padding(top = MaterialTheme.spacing.extraLarge),
-                colors = CardDefaults.cardColors(MaterialTheme.colorScheme.surfaceVariant)) {
-                Greeting(name = "Card", style = MaterialTheme.typography.displaySmall)
-            }
-        }
-
-
-
 
     }
 }
