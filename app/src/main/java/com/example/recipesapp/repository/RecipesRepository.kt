@@ -10,7 +10,7 @@ class RecipesRepository @Inject constructor(private val api: RecipesApi){
     suspend fun getRecipes(tags: String, number: Int = 3)
     : DataOrException<RecipesModel, Boolean, Exception> {
         val response = try {
-            api.getRandomRecipes(tags= tags, number = number)
+            api.getRandomRecipes(number = number)
         }
         catch (e: Exception) {
             Log.d("EX", "Exception: $e")
