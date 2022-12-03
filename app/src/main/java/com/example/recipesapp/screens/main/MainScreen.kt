@@ -1,6 +1,7 @@
 
 package com.example.recipesapp.screens.main
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +27,10 @@ fun ShowData(mainViewModel: MainViewModel) {
     if (recipesData.loading == true) {
         CircularProgressIndicator()
     } else if(recipesData.data != null) {
-        Text(text = "Main Screen: ${recipesData.data!!.recipes.first().title}")
+        Column() {
+            recipesData.data!!.recipes.forEach{ 
+                Text(text = it.title)
+            }
+        }
     }
 }
