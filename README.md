@@ -16,3 +16,12 @@ The project uses Material3 to customize:
 
 The project will use the following:
 
+- __Hilt-Dagger__ for Dependency Injection
+- __Coroutines__
+- __Hilt for Navigation__
+- __Lifecycle Scope__ - Lifecycle-aware components perform actions in response to a change in the lifecycle status of another component, such as activities and fragments.
+- __Coil__
+- __Retrofit__
+- __OkHttp__
+- __Room__
+- __JSON Converter__
