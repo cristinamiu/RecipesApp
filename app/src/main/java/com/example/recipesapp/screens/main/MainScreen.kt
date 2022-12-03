@@ -40,7 +40,7 @@ fun RecipesMainScreen(navController: NavController,
 fun MainScaffold(recipesData: RecipesModel?,
                  navController: NavController) {
     Scaffold(
-        topBar = { RecipesTopAppBar(isMainScreen = true)},
+        topBar = { RecipesTopAppBar(navController = navController)},
         bottomBar = { RecipesBottomAppBar(navController = navController) }
     ) {
         MainContent(

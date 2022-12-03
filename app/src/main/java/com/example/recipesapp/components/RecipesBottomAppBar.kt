@@ -14,7 +14,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.recipesapp.navigation.RecipesScreens
 
@@ -23,14 +22,14 @@ fun RecipesBottomAppBar(navController: NavController) {
     BottomAppBar(
         containerColor = MaterialTheme.colorScheme.surfaceVariant,
     ) {
-        IconButton(onClick = { /*TODO*/ },
+        IconButton(onClick = { navController.navigate(RecipesScreens.MainScreen.name) },
         modifier = Modifier.weight(1f)) {
             Icon(imageVector = Icons.Default.Home,
                 contentDescription = "Search Button"
                 )
         }
 
-        IconButton(onClick = { /*TODO*/ },
+        IconButton(onClick = { navController.navigate(RecipesScreens.SearchScreen.name) },
         modifier = Modifier.weight(1f)) {
             Icon(imageVector = Icons.Rounded.Search,
                 contentDescription = "Search Button")

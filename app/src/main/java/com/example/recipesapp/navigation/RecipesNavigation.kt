@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.recipesapp.screens.favorites.RecipesFavoritesScreen
 import com.example.recipesapp.screens.main.MainViewModel
 import com.example.recipesapp.screens.main.RecipesMainScreen
+import com.example.recipesapp.screens.search.SearchScreen
 import com.example.recipesapp.screens.splash.RecipesSplashScreen
 
 @Composable
@@ -28,6 +29,10 @@ fun RecipesNavigation() {
 
         composable(RecipesScreens.FavoriteScreen.name) {
             RecipesFavoritesScreen(navController = navController)
+        }
+
+        composable(RecipesScreens.SearchScreen.name) {
+            SearchScreen(navController = navController)
         }
     }
 }
