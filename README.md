@@ -63,3 +63,12 @@ Register the class to AndroidManifest.xml
 
 ## 3. Set up Navigation
 
+For navigation, the screens will be defined in a enum class.
+
+The first screen is the Splash Screen which shows an animation and then navigates to the 
+MainScreen.
+
+## 4. Retrofit
+
+The response from the spoonacular API is modeled with Kotlin data classes using the 
+JSON To Kotlin Class plugin in Android Studio. 
