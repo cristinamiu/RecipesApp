@@ -10,9 +10,9 @@ The project uses Material3 to customize:
 
 ### 2. Setup Navigation
 
-#### 2.1 Use Scaffold to define TopAppBar
+#### Use Scaffold to define TopAppBar
 
-#### 2.2 Setup project dependencies
+#### Setup project dependencies
 
 The project will use the following:
 
@@ -25,3 +25,38 @@ The project will use the following:
 - __OkHttp__
 - __Room__
 - __JSON Converter__
+
+#### Add Internet permmissions to AndroidManifest.xml
+
+````xml
+    <uses-permission android:name="android.permission.INTERNET"/>
+````
+
+#### Define RecipesApplication
+
+@HiltAndroidApp triggers Hilt's code generation, including a base class for your application 
+that serves as the application-level dependency container.
+
+````kotlin
+@HiltAndroidApp
+class RecipesApplication: Application() {
+}
+````
+This generated Hilt component is attached to the Application object's lifecycle and 
+provides dependencies to it. Additionally, it is the parent component of the app, which means that 
+other components can access the dependencies that it provides.
+
+Register the class to AndroidManifest.xml
+
+````xml
+ <application
+        android:allowBackup="true"
+        android:name=".RecipesApplication"
+/>
+````
+
+#### Define AppModule to define dependecies
+
+#### Annotate MainActivity with @AndroidEntryPoint
+
+@AndroidEntryPoint generates an individual Hilt component for each Android class in your project.
