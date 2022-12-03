@@ -8,7 +8,7 @@ The project uses Material3 to customize:
 - Typography
 - Spacing 
 
-### 2. Setup Navigation
+### 2. Setup Dependency Injection
 
 #### Use Scaffold to define TopAppBar
 
@@ -60,3 +60,6 @@ Register the class to AndroidManifest.xml
 #### Annotate MainActivity with @AndroidEntryPoint
 
 @AndroidEntryPoint generates an individual Hilt component for each Android class in your project.
+
+## 3. Set up Navigation
+

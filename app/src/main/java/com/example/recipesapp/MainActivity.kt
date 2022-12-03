@@ -34,12 +34,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//@Composable
-//fun Greeting(name: String, style: TextStyle) {
-//    Text(text = "Hello $name!",
-//    style = style)
-//}
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
