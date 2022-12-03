@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.recipesapp.screens.RecipesMainScreen
-import com.example.recipesapp.screens.RecipesSplashScreen
+import com.example.recipesapp.screens.main.RecipesMainScreen
+import com.example.recipesapp.screens.splash.RecipesSplashScreen
 
 @Composable
 fun RecipesNavigation() {
