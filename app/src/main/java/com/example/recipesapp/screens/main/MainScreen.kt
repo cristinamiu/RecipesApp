@@ -32,14 +32,22 @@ fun RecipesMainScreen(navController: NavController,
 
     val queryTag = mainViewModel.queryTag.value
     val res = mainViewModel.response
-    if (res.value.loading == true) {
-        CircularProgressIndicator()
-    } else if(res.value.data != null) {
-        MainScaffold(recipesData = res.value.data,
-                     navController = navController,
-        mainViewModel = mainViewModel,
-            favoriteViewModel= favoriteViewModel,
-        queryTag = queryTag)
+
+    if (res.value.e is retrofit2.HttpException) {
+        Text(text = "${res.value.e}")
+    } else {
+
+        if (res.value.loading == true) {
+            CircularProgressIndicator()
+        } else if (res.value.data != null) {
+            MainScaffold(
+                recipesData = res.value.data,
+                navController = navController,
+                mainViewModel = mainViewModel,
+                favoriteViewModel = favoriteViewModel,
+                queryTag = queryTag
+            )
+        }
     }
 }
 
