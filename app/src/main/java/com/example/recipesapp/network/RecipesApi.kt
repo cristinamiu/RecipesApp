@@ -12,7 +12,7 @@ interface RecipesApi {
     @GET(value = "recipes/random")
     suspend fun getRandomRecipesByTag(
         @Query("limitLicense") query: Boolean = true,
-        @Query("number") number : Int = 2,
+        @Query("number") number : Int = 20,
         @Query("tags") tags: String,
         @Query("apiKey") apiKey: String = Constants.API_KEY
     ): RecipesModel
@@ -20,7 +20,7 @@ interface RecipesApi {
     @GET(value = "recipes/random")
     suspend fun getRandomRecipes(
         @Query("limitLicense") query: Boolean = true,
-        @Query("number") number : Int = 2,
+        @Query("number") number : Int = 20,
         @Query("apiKey") apiKey: String = Constants.API_KEY
     ): RecipesModel
 }
