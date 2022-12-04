@@ -1,7 +1,6 @@
 
 package com.example.recipesapp.screens.main
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +11,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.produceState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -22,7 +20,6 @@ import androidx.navigation.NavController
 import com.example.recipesapp.components.RecipeCard
 import com.example.recipesapp.components.RecipesBottomAppBar
 import com.example.recipesapp.components.RecipesTopAppBar
-import com.example.recipesapp.data.DataOrException
 import com.example.recipesapp.model.RecipesModel
 import com.example.recipesapp.ui.theme.spacing
 
@@ -61,7 +58,6 @@ fun MainScaffold(recipesData: RecipesModel?,
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainContent(recipesData: RecipesModel?,
                 paddingValues: PaddingValues,
