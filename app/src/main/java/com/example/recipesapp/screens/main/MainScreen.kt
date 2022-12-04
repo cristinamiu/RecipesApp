@@ -16,16 +16,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.recipesapp.components.RecipeCard
 import com.example.recipesapp.components.RecipesBottomAppBar
 import com.example.recipesapp.components.RecipesTopAppBar
 import com.example.recipesapp.model.RecipesModel
+import com.example.recipesapp.screens.favorites.FavoriteViewModel
 import com.example.recipesapp.ui.theme.spacing
 
 @Composable
 fun RecipesMainScreen(navController: NavController,
-                      mainViewModel: MainViewModel) {
+                      mainViewModel: MainViewModel,
+                      favoriteViewModel: FavoriteViewModel = hiltViewModel()) {
 
     val queryTag = mainViewModel.queryTag.value
     val res = mainViewModel.response
@@ -35,6 +38,7 @@ fun RecipesMainScreen(navController: NavController,
         MainScaffold(recipesData = res.value.data,
                      navController = navController,
         mainViewModel = mainViewModel,
+            favoriteViewModel= favoriteViewModel,
         queryTag = queryTag)
     }
 }
@@ -44,6 +48,7 @@ fun RecipesMainScreen(navController: NavController,
 fun MainScaffold(recipesData: RecipesModel?,
                  navController: NavController,
                  mainViewModel: MainViewModel,
+                 favoriteViewModel: FavoriteViewModel,
                  queryTag: String) {
     Scaffold(
         topBar = { RecipesTopAppBar(navController = navController)},
@@ -53,6 +58,7 @@ fun MainScaffold(recipesData: RecipesModel?,
             recipesData = recipesData,
             paddingValues = it,
             mainViewModel = mainViewModel,
+            favoriteViewModel= favoriteViewModel,
             queryTag = queryTag
         )
     }
@@ -62,12 +68,13 @@ fun MainScaffold(recipesData: RecipesModel?,
 fun MainContent(recipesData: RecipesModel?,
                 paddingValues: PaddingValues,
                 mainViewModel: MainViewModel,
+                favoriteViewModel: FavoriteViewModel,
                 queryTag: String) {
     Column(modifier = Modifier.padding(paddingValues)) {
         RecipesSearchBar(mainViewModel= mainViewModel, queryTag = queryTag)
         LazyColumn() {
             items(recipesData!!.recipes) {
-                RecipeCard(recipe = it)
+                RecipeCard(recipe = it, favoriteViewModel= favoriteViewModel)
             }
         }
     }
@@ -81,7 +88,8 @@ private fun RecipesSearchBar(mainViewModel: MainViewModel, queryTag: String) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
     OutlinedTextField(
-        modifier = Modifier.padding(MaterialTheme.spacing.small)
+        modifier = Modifier
+            .padding(MaterialTheme.spacing.small)
             .fillMaxWidth(),
         value = queryTag, onValueChange = {newValue ->
             mainViewModel.onQueryChanged(newValue)},

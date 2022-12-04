@@ -25,11 +25,11 @@ fun RecipesBottomAppBar(navController: NavController) {
                 )
         }
 
-        IconButton(onClick = { navController.navigate(RecipesScreens.SearchScreen.name) },
-        modifier = Modifier.weight(1f)) {
-            Icon(imageVector = Icons.Rounded.Search,
-                contentDescription = "Search Button")
-        }
+//        IconButton(onClick = { navController.navigate(RecipesScreens.SearchScreen.name) },
+//        modifier = Modifier.weight(1f)) {
+//            Icon(imageVector = Icons.Rounded.Search,
+//                contentDescription = "Search Button")
+//        }
 
         IconButton(onClick = { navController.navigate(RecipesScreens.FavoriteScreen.name)},
             modifier = Modifier.weight(1f)) {
