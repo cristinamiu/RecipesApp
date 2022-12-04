@@ -7,7 +7,7 @@ import com.example.recipesapp.network.RecipesApi
 import javax.inject.Inject
 
 class RecipesRepository @Inject constructor(private val api: RecipesApi){
-    suspend fun getRecipes(tags: String, number: Int = 3)
+    suspend fun getRecipes(tags: String, number: Int = 20)
     : DataOrException<RecipesModel, Boolean, Exception> {
         val response = try {
             api.getRandomRecipes(number = number)

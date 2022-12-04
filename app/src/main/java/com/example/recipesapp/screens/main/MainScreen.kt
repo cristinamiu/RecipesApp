@@ -4,6 +4,8 @@ package com.example.recipesapp.screens.main
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -12,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import com.example.recipesapp.components.RecipeCard
 import com.example.recipesapp.components.RecipesBottomAppBar
 import com.example.recipesapp.components.RecipesTopAppBar
 import com.example.recipesapp.data.DataOrException
@@ -53,9 +56,9 @@ fun MainScaffold(recipesData: RecipesModel?,
 @Composable
 fun MainContent(recipesData: RecipesModel?,
                 paddingValues: PaddingValues) {
-    Column(modifier = Modifier.padding(paddingValues)) {
-        recipesData!!.recipes.forEach{
-            Text(text = it.title)
+    LazyColumn(modifier = Modifier.padding(paddingValues)) {
+        items(recipesData!!.recipes) {
+            RecipeCard(recipe = it)
         }
     }
 
