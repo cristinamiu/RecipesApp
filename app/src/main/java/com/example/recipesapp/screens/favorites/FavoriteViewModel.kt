@@ -30,7 +30,8 @@ ViewModel(){
                 .collect { listOfFavs ->
 
                     if(listOfFavs.isNullOrEmpty()) {
-                        Log.d("TAG", "Empty favs")
+                        _favList.value = emptyList()
+                        Log.d("TAG", "Empty favs - ${listOfFavs.isEmpty()}")
                     } else {
                         _favList.value = listOfFavs
                         Log.d("TAG", "${favList.value}")
@@ -47,5 +48,6 @@ ViewModel(){
     }
     fun deleteFavorite(favorite: Favorite) = viewModelScope.launch {
         repository.deleteFavorite(favorite)
+        Log.d("DEL", "${repository.getFavorites()}")
     }
 }
