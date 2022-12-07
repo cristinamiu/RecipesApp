@@ -80,7 +80,7 @@ fun RecipeRow(recipe: Favorite,
             .padding(horizontal = MaterialTheme.spacing.medium),
             verticalAlignment = Alignment.CenterVertically) {
             Column(modifier = Modifier.weight(3f)) {
-                Text(text = "${recipe.name}",
+                Text(text = recipe.name,
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
