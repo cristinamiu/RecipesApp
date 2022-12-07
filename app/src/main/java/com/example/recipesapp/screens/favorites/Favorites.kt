@@ -20,6 +20,7 @@ import androidx.navigation.NavController
 import com.example.recipesapp.components.RecipesBottomAppBar
 import com.example.recipesapp.components.RecipesTopAppBar
 import com.example.recipesapp.model.Favorite
+import com.example.recipesapp.navigation.RecipesScreens
 import com.example.recipesapp.ui.theme.spacing
 
 @Composable
@@ -70,7 +71,7 @@ fun RecipeRow(recipe: Favorite,
             .padding(MaterialTheme.spacing.extraSmall)
             .fillMaxWidth()
             .height(50.dp)
-            .clickable { },
+            .clickable { navController.navigate("${RecipesScreens.RecipeDetails.name}/${recipe.id}") },
     shape = CircleShape.copy(topEnd = CornerSize(MaterialTheme.spacing.small)),
     color = MaterialTheme.colorScheme.surfaceVariant) {
 

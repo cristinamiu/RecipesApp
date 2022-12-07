@@ -5,5 +5,6 @@ enum class RecipesScreens {
     MainScreen,
     AboutScreen,
     FavoriteScreen,
-    SearchScreen
+    SearchScreen,
+    RecipeDetails
 }
