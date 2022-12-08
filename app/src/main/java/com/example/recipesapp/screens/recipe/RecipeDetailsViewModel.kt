@@ -15,8 +15,12 @@ import javax.inject.Inject
 class RecipeDetailsViewModel
 @Inject constructor(private val repository: RecipesRepository) :
     ViewModel(){
+    private val recipeFound: MutableState<Recipe>? = null
     val response: MutableState<DataOrException<Recipe, Boolean, Exception>> =
         mutableStateOf(DataOrException())
+    init {
+        getRecipeById(id= 3)
+    }
 
     fun getRecipeById(id: Int) = viewModelScope.launch {
         response.value = repository.getRecipeById(id = id)

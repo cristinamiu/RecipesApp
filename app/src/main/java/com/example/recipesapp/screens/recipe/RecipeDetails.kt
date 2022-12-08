@@ -54,10 +54,9 @@ fun RecipeDetailsScaffold(navController: NavController,
 @Composable
 fun RecipeDetails(recipeId: Int,
                   recipeDetailsViewModel: RecipeDetailsViewModel) {
-    recipeDetailsViewModel.getRecipeById(recipeId)
     val response = recipeDetailsViewModel.response.value
-
-    ShowRecipeDetails(response)
+    response.data?.let { Text(text = it.title) }
+//    ShowRecipeDetails(response)
 }
 
 @Composable
