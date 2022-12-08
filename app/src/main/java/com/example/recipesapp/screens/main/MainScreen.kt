@@ -22,6 +22,7 @@ import com.example.recipesapp.components.RecipeCard
 import com.example.recipesapp.components.RecipesBottomAppBar
 import com.example.recipesapp.components.RecipesTopAppBar
 import com.example.recipesapp.model.RecipesModel
+import com.example.recipesapp.navigation.RecipesScreens
 import com.example.recipesapp.screens.favorites.FavoriteViewModel
 import com.example.recipesapp.ui.theme.spacing
 
@@ -67,22 +68,30 @@ fun MainScaffold(recipesData: RecipesModel?,
             paddingValues = it,
             mainViewModel = mainViewModel,
             favoriteViewModel= favoriteViewModel,
-            queryTag = queryTag
+            queryTag = queryTag,
+            navController = navController
         )
     }
 }
 
 @Composable
-fun MainContent(recipesData: RecipesModel?,
-                paddingValues: PaddingValues,
-                mainViewModel: MainViewModel,
-                favoriteViewModel: FavoriteViewModel,
-                queryTag: String) {
+fun MainContent(
+    recipesData: RecipesModel?,
+    paddingValues: PaddingValues,
+    mainViewModel: MainViewModel,
+    favoriteViewModel: FavoriteViewModel,
+    queryTag: String,
+    navController: NavController
+) {
     Column(modifier = Modifier.padding(paddingValues)) {
         RecipesSearchBar(mainViewModel= mainViewModel, queryTag = queryTag)
         LazyColumn() {
             items(recipesData!!.recipes) {
-                RecipeCard(recipe = it, favoriteViewModel= favoriteViewModel)
+                RecipeCard(recipe = it,
+                    favoriteViewModel= favoriteViewModel,
+                onClick = {
+                    navController.navigate("${RecipesScreens.RecipeDetails.name}/${it.id}")
+                })
             }
         }
     }
