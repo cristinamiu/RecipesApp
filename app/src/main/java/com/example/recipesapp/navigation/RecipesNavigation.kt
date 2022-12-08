@@ -40,8 +40,7 @@ fun RecipesNavigation() {
 
         composable("${RecipesScreens.RecipeDetails.name}/{recipeId}",
             arguments = listOf(navArgument("recipeId") {type = NavType.IntType})) {
-            RecipeDetails(navController = navController,
-                recipeId = it.arguments!!.getInt("recipeId"))
+            RecipeDetails(navController = navController)
         }
     }
 }

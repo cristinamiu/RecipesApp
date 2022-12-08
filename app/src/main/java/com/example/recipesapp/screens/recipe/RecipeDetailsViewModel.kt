@@ -2,6 +2,7 @@ package com.example.recipesapp.screens.recipe
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipesapp.data.DataOrException
@@ -13,16 +14,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecipeDetailsViewModel
-@Inject constructor(private val repository: RecipesRepository) :
+@Inject constructor(private val repository: RecipesRepository,
+                    savedStateHandle: SavedStateHandle) :
     ViewModel(){
-    private val recipeFound: MutableState<Recipe>? = null
     val response: MutableState<DataOrException<Recipe, Boolean, Exception>> =
         mutableStateOf(DataOrException())
     init {
-        getRecipeById(id= 3)
+        val recipeId = savedStateHandle.get<Int>("recipeId")
+        if (recipeId != null) {
+            getRecipeById(id= recipeId)
+        }
     }
 
-    fun getRecipeById(id: Int) = viewModelScope.launch {
+    private fun getRecipeById(id: Int) = viewModelScope.launch {
         response.value = repository.getRecipeById(id = id)
     }
 }

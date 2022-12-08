@@ -1,17 +1,11 @@
 package com.example.recipesapp.screens.recipe
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -25,43 +19,47 @@ import com.example.recipesapp.components.RecipesBottomAppBar
 import com.example.recipesapp.components.RecipesTopAppBar
 import com.example.recipesapp.data.DataOrException
 import com.example.recipesapp.model.Recipe
+import com.example.recipesapp.ui.theme.spacing
+import com.example.recipesapp.utils.DisplayHtml
 
 
 @Composable
-fun RecipeDetails(navController: NavController, recipeId: Int
+fun RecipeDetails(
+    navController: NavController
 ) {
-    RecipeDetailsScaffold(navController = navController, recipeId = recipeId)
+    RecipeDetailsScaffold(navController = navController)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecipeDetailsScaffold(navController: NavController,
-                          recipeId: Int,
-                          recipeDetailsViewModel: RecipeDetailsViewModel = hiltViewModel()) {
+fun RecipeDetailsScaffold(
+    navController: NavController,
+    recipeDetailsViewModel: RecipeDetailsViewModel = hiltViewModel()
+) {
     Scaffold(
         topBar = { RecipesTopAppBar(navController = navController,
             icon = Icons.Default.ArrowBack) },
         bottomBar = { RecipesBottomAppBar(navController = navController) }
     ) {
+        rememberScrollState()
+
         Surface(modifier = Modifier
             .fillMaxSize()
             .padding(it)) {
-            RecipeDetails(recipeId = recipeId, recipeDetailsViewModel = recipeDetailsViewModel)
+            RecipeDetails(recipeDetailsViewModel = recipeDetailsViewModel)
         }
     }
 }
 
 @Composable
-fun RecipeDetails(recipeId: Int,
-                  recipeDetailsViewModel: RecipeDetailsViewModel) {
+fun RecipeDetails(recipeDetailsViewModel: RecipeDetailsViewModel) {
     val response = recipeDetailsViewModel.response.value
-    response.data?.let { Text(text = it.title) }
-//    ShowRecipeDetails(response)
+    ShowRecipeDetails(response)
 }
 
 @Composable
 fun ShowRecipeDetails(response: DataOrException<Recipe, Boolean, Exception>) {
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState())) {
         AsyncImage(
             modifier = Modifier
                 .fillMaxWidth()
@@ -73,29 +71,44 @@ fun ShowRecipeDetails(response: DataOrException<Recipe, Boolean, Exception>) {
             contentScale = ContentScale.FillWidth,
             contentDescription = "Recipes Image",
         )
-        response.data?.let { Text(text = it.title) }
+        response.data?.let { Text(text = it.title,
+        style = MaterialTheme.typography.displayMedium) }
 
-        ShowIngredients(response)
-        ShowInstructions(response = response)
+
+
+            ShowIngredients(response)
+            Spacer(modifier = Modifier.padding(MaterialTheme.spacing.medium))
+            ShowInstructions(response = response)
+
+
+
+
     }
 }
 
 @Composable
 private fun ShowIngredients(response: DataOrException<Recipe, Boolean, Exception>) {
-    Text(text = "Ingredients:")
+    Text(
+        text = "Ingredients:",
+        style = MaterialTheme.typography.headlineMedium
+    )
 
-    LazyColumn() {
-        response.data?.let { it ->
-            items(it.extendedIngredients) {
-                Text(text = "${it.name}, ${it.amount}")
-            }
+    Column() {
+        response.data?.extendedIngredients?.forEach { ingredient ->
+            Text(text = "${ingredient.name} - ${ingredient.amount}")
         }
     }
 }
 
+
 @Composable
 private fun ShowInstructions(response: DataOrException<Recipe, Boolean, Exception>) {
-    Text(text = "Instructions:")
+    Text(
+        text = "Instructions:",
+        style = MaterialTheme.typography.headlineMedium
+    )
 
-    response.data?.let { Text(text = it.instructions) }
+    response.data?.let {
+        Text(text = DisplayHtml(text = response.data!!.instructions))
+    }
 }
